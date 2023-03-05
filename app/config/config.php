@@ -1,15 +1,15 @@
-<?php 
-//DB Params
-define('DB_HOST','localhost');
-define('DB_USER','_YOUR_USER_');
-define('DB_PASS','_YOUR_PASS');
-define('DB_NAME','-YOUS_DBNAME_');
-
-
-
+<?php
 //App root
-define('APP_ROOT', dirname(dirname(__FILE__)) );
+define('APP_ROOT', dirname(dirname(__FILE__)));
+
+load_files(dirname(__FILE__));
+
+if (defined('DEV_MODE') && DEV_MODE) return;
+
+//production configs
 //URL root
-define('URL_ROOT', '_YOUR_URL_' );
+define('URL_ROOT', '_YOUR_URL_');
 //Site Name
-define('SITE_NAME', '_YOUR_SITENAME_' );
+define('SITE_NAME', 'Modelo MVC');
+//Site version
+define('APP_VERSION', '0.1b');
