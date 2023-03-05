@@ -1,8 +1,8 @@
 <?php
 // Load configs
-load_files(dirname(__FILE__). DIRECTORY_SEPARATOR . 'config');
+load_files(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'config');
 // Load helpers
-load_files(dirname(__FILE__). DIRECTORY_SEPARATOR . 'helpers');
+load_files(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'helpers');
 
 // Auto Load libraries
 function auto($class_name) {
