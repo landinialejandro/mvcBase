@@ -2,7 +2,7 @@
   Options -Multiviews
   RewriteEngine On
   # change RewriteBase for other project
-  RewriteBase /multipleUpload/public
+  RewriteBase /clientes/mios/mvcModelo/public
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule  ^(.+)$ index.php?url=$1 [QSA,L]
