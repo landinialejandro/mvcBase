@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITE_NAME ?></title>
 
+    <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/bulma/css/bulma.css">
     <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/css/style.css">
 
 </head>
