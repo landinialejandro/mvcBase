@@ -1,5 +1,5 @@
 <?php
-
+//Create Model
 class CM extends Controller  {
     protected $Model;
     public function __construct() {
