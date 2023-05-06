@@ -1,10 +1,11 @@
-<?php require APP_ROOT."/views/inc/header.php"; ?>
+<?php 
+require APP_ROOT."/views/inc/header.php"; ?>
 <h1 class="title">
     <?php echo $data['title']; ?>
 </h1>
 <p class="subtitle" >MVC Model test</p>
 <?php
-$btn = new Button("Hola Mundo","index");
+$btn = new components\Button("Hola Mundo","index.php");
 echo $btn->render();
 ?>
 

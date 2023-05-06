@@ -1,6 +1,7 @@
 <?php
 //* base controller
 //* load models and views
+namespace libraries;
 
 class Controller {
     //load model

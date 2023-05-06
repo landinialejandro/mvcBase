@@ -8,7 +8,7 @@ load_files(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'helpers');
 function auto($class_name) {
     try {
         if (!class_exists($class_name)) {
-            $file_path = APP_ROOT . '/libraries/' . str_replace('\\', '/', $class_name) . '.php';
+            $file_path = APP_ROOT . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $class_name) . '.php';
             require_file($file_path);
         }
     } catch (Exception $e) {
@@ -24,6 +24,7 @@ function load_files($dirName, $fileType = "*.php") {
     }
 }
 function require_file($file_path) {
-    if (file_exists($file_path))  require_once $file_path;
+    if (!file_exists($file_path)) throw new Error("File not found");
+    require_once $file_path;
 }
 spl_autoload_register('auto');

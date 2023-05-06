@@ -1,5 +1,6 @@
 <?php
 //Create Model
+use libraries\Controller;
 class CM extends Controller  {
     protected $Model;
     public function __construct() {

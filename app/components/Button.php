@@ -1,4 +1,5 @@
 <?php
+namespace components;
 class Button {
     private $text;
     private $url;
@@ -22,7 +23,7 @@ class Button {
         if (is_string($attribute) && is_string($value)) {
             $this->attributes[$attribute] = $value;
         } else {
-            throw new InvalidArgumentException('Both attribute and value must be valid strings');
+            //throw new Error('Both attribute and value must be valid strings');
         }
     }
 
