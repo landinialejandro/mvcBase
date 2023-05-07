@@ -9,12 +9,13 @@ class Components {
     public function setText(string $text) {
         $this->text = $text;
     }
+    
     public function getText() {
         return $this->text;
     }
 
     public function setAttribute(string $attribute, string $value) {
-        if (is_string($attribute) && is_string($value)) {
+        if (is_string($attribute) && is_string($value) && !empty(trim($value))) {
             $this->attributes[$attribute] = $value;
         } else {
             //throw new Error('Both attribute and value must be valid strings');
