@@ -1,6 +1,7 @@
 <?php
 
 namespace components;
+use Error;
 
 class Components {
     private $text;
@@ -18,12 +19,18 @@ class Components {
         if (is_string($attribute) && is_string($value) && !empty(trim($value))) {
             $this->attributes[$attribute] = $value;
         } else {
-            //throw new Error('Both attribute and value must be valid strings');
+            throw new Error('Both attribute and value must be valid strings, attr: '. $attribute . ", value: ". $value);
         }
     }
 
     public function setAttributes(array $attributes) {
-        return $this->attributes = $attributes;
+        return $this->attributes = array_merge($attributes, $this->attributes);
+    
+    }
+    public function setDataAttributes(array $data) {
+         foreach ($data as $k => $v) {
+            $this->setAttribute("data-".$k,$v);
+        }
     }
 
     public function getAttributes() {
