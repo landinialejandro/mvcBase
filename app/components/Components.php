@@ -32,6 +32,11 @@ class Components {
             $this->setAttribute("data-".$k,$v);
         }
     }
+    public function setClassAttributes(array $data) {
+        if (!empty($data)){
+            $this->setAttribute("class",implode(" ",$data));
+        }
+    }
 
     public function getAttributes() {
         return $this->renderAttribute();

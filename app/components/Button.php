@@ -14,11 +14,12 @@ namespace components;
 
 class Button extends Components {
 
-    public function __construct(string $text, string $url = "", array $attributes = [], array $data = []) {
+    public function __construct(string $text, string $url = "", array $attributes = [], array $data = [], array $class =[]) {
         $this->setText($text);
         !empty(trim($url)) && $this->setAttribute('href', $url);
         $this->setAttributes($attributes);
         $this->setDataAttributes($data);
+        $this->setClassAttributes($class);
     }
 
     public function render(): string {
