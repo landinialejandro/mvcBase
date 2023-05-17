@@ -41,11 +41,11 @@ class Card extends Components {
         }
 
         if (isset($this->header['dismiss'])) {
-            $html .= '<button type="button" class="btn-close" data-dismiss="card" aria-label="Close"></button>';
+            $html .= '<button class="delete"></button>';
         }
 
         if (isset($this->header['toolbox'])) {
-            $html .= '<div class="card-toolbox">';
+            $html .= '<div class="toolbox">';
             foreach ($this->header['toolbox'] as $tool) {
                 $html .= $tool->render();
             }
