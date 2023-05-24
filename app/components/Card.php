@@ -1,6 +1,7 @@
 <?php
 
 namespace components;
+use components\{Div, Button};
 
 class Card extends Components {
     private $header;
@@ -14,63 +15,55 @@ class Card extends Components {
     }
 
     public function render() {
-        $html = '<div class="card">';
 
-        if ($this->header) {
-            $html .= $this->renderHeader();
-        }
+        if ($this->header) $html[] = $this->renderHeader();
 
-        if ($this->body) {
-            $html .= $this->renderBody();
-        }
+        if ($this->body) $html[] = $this->renderBody();
 
-        if ($this->footer) {
-            $html .= $this->renderFooter();
-        }
+        if ($this->footer) $html[] = $this->renderFooter();
 
-        $html .= '</div>';
-
-        return $html;
+        return (new Div(
+            class: ['card'],
+            text: $this->renderText($html)
+        ))->render();
     }
 
     private function renderHeader() {
-        $html = '<header class="card-header">';
 
         if (isset($this->header['title'])) {
-            $html .= '<h3 class="card-title">' . $this->header['title'] . '</h3>';
+            $html[] = (new Components(text: $this->header['title'], class: ["card-title"]))->renderComponent("h3");
         }
 
         if (isset($this->header['dismiss'])) {
-            $html .= '<button class="delete"></button>';
+            $html[] = (new Button(class: ["delete"]))->render();
         }
 
         if (isset($this->header['toolbox'])) {
-            $html .= '<div class="toolbox">';
-            foreach ($this->header['toolbox'] as $tool) {
-                $html .= $tool->render();
-            }
-            $html .= '</div>';
+            $html[] = (new Div(text: $this->renderText($this->header['toolbox']), class: ["toolbox"]))->render();
         }
 
-        $html .= '</header>';
-
-        return $html;
+        return (new Div(
+            class: ['card-header'],
+            text: $this->renderText($html)
+        ))->render();
     }
 
     private function renderBody() {
-        $html = '<div class="card-content"><div class="content">' . $this->body . '</div></div>';
-        return $html;
+        return (new Div(
+            class: ["card-content"],
+            text: (new Div(
+                class: ['content'],
+                text: $this->renderText($this->body)
+            )
+            )->render()
+        )
+        )->render();
     }
 
     private function renderFooter() {
-        $html = '<footer class="card-footer">';
-
-        foreach ($this->footer as $button) {
-            $html .= $button->render();
-        }
-
-        $html .= '</footer>';
-
-        return $html;
+        return (new Div(
+            class: ['card-footer'],
+            text: $this->renderText($this->footer)
+        ))->render();
     }
 }

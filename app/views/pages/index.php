@@ -1,6 +1,6 @@
 <?php
 
-use components\{Button, Card};
+namespace components;
 
 require APP_ROOT . "/views/inc/header.php";
 ?>
@@ -16,23 +16,27 @@ $btn = new Button(
     data: ["id" => 1, "name" => "Ale"],
     class: ["button is-primary", "is-medium"]
 );
+// $btn->title("hola");
 echo $btn->render();
+
+
 
 $crd = new Card(
     header: [
         'title' => 'Mi tarjeta',
         'dismiss' => true,
         'toolbox' => [
-            new Button(text: 'Maximizar', class: ['button delete']),
-            new Button(text: 'Editar')
+            (new Button(text: 'Maximizar', class: ['button delete']))->render(),
+            (new Button(text: 'Editar'))->render()
         ]
     ],
     body: "body",
     footer: [
-        new Button(text: 'Salir'),
-        new Button(text: 'Gurdar', class: ['button is-danger'])
+        (new Button(text: 'Salir'))->render(),
+        (new Button(text: 'Gurdar', class: ['button is-danger']))->render()
     ]
 );
+
 
 echo $crd->render();
 ?>
