@@ -11,9 +11,9 @@ require APP_ROOT . "/views/inc/header.php";
 <?php
 
 $btn = new Button(
-    text: "Hola Mundo!",
+    content: "Hola Mundo!",
     url: URL_ROOT . "/index.php",
-    data: ["id" => 1, "name" => "Ale"],
+    data: ["id" => 1, "name" => "John Doe"],
     class: ["button is-primary", "is-medium"]
 );
 // $btn->title("hola");
@@ -26,14 +26,14 @@ $crd = new Card(
         'title' => 'Mi tarjeta',
         'dismiss' => true,
         'toolbox' => [
-            (new Button(text: 'Maximizar', class: ['button delete']))->render(),
-            (new Button(text: 'Editar'))->render()
+            (new Button(content: 'Maximizar', class: ['button delete']))->render(),
+            (new Button(content: 'Editar'))->render()
         ]
     ],
     body: "body",
     footer: [
-        (new Button(text: 'Salir'))->render(),
-        (new Button(text: 'Gurdar', class: ['button is-danger']))->render()
+        (new Button(content: 'Salir'))->render(),
+        (new Button(content: 'Gurdar', class: ['button is-danger']))->render()
     ]
 );
 

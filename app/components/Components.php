@@ -5,66 +5,68 @@ namespace components;
 use Error;
 
 class Components {
-    private $text;
+    private $content;
     private $attributes = [];
 
-    public function __construct(string $text = "", string $url = "", array $attributes = [], array $data = [], array $class = []) {
-        $this->setText($text);
+    public function __construct(string $content = "", string $url = "", array $attributes = [], array $data = [], array $class = []) {
+        $this->setContent($content);
         !empty(trim($url)) && $this->setAttribute('href', $url);
         $this->setAttributes($attributes);
         $this->setDataAttributes($data);
         $this->setClassAttributes($class);
     }
 
-    public function setText(string $text = "") {
-        $this->text = $text;
+    public function setContent(string $content = "") {
+        $this->content = $content;
     }
 
-    public function getText() {
-        return $this->text;
+    public function getContent() {
+        return $this->content;
     }
 
     public function setAttribute(string $attribute, string $value) {
-        if (is_string($attribute) && is_string($value) && !empty(trim($value))) {
+        if (is_string($attribute) && is_string($value)) {
             $this->attributes[$attribute] = $value;
         } else {
             throw new Error('Both attribute and value must be valid strings, attr: ' . $attribute . ", value: " . $value);
         }
     }
 
-    public function setAttributes(array $attributes) {
+    /* $attributes = ['class' => ["button is-primary", "is-medium"]]  */
+    public function setAttributes(array $attributes): array {
         return $this->attributes = array_merge($attributes, $this->attributes);
     }
+
+    /* $data = ['id'=>1,'name'=>'John Doe']  */
     public function setDataAttributes(array $data) {
         foreach ($data as $k => $v) {
             $this->setAttribute("data-" . $k, $v);
         }
     }
+
+    /* $data = ['btn','prymary','btn large']  */
     public function setClassAttributes(array $data) {
-        if (!empty($data)) {
-            $this->setAttribute("class", implode(" ", $data));
-        }
+        $this->setAttribute("class",  $this->renderText($data, " "));
     }
 
     public function getAttributes() {
         return $this->renderAttribute();
     }
 
-    public function renderComponent($component) {
-
-        return "<{$component}{$this->getAttributes()}>{$this->getText()}</{$component}>";
+    public function renderComponent(string $component): string {
+        return "<{$component}{$this->getAttributes()}>{$this->getContent()}</{$component}>";
     }
 
     private function renderAttribute(): string {
         $attributeHtml = "";
         foreach ($this->attributes as $attribute => $values) {
-            if (is_array($values)) $values = implode(' ', $values);
+            $values = $this->renderText($values, " ");
             $attributeHtml .= " {$attribute}=\"{$values}\"";
         }
         return $attributeHtml;
     }
 
-    public function renderText($text, $separador = "") {
+    public function renderText($text, $separador = ""): string {
         if (is_array($text)) {
             return implode($separador, $text);
         } else if (is_null($text) || !is_string($text)) {
