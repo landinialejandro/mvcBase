@@ -1,6 +1,25 @@
 <?php
 
+/**
+ *   $crd = new Card(
+ *     header: [
+ *         'title' => 'Mi tarjeta',
+ *         'dismiss' => true,
+ *         'toolbox' => [
+ *             (new Button(content: 'Maximizar', class: ['button delete']))->render(),
+ *             (new Button(content: 'Editar'))->render()
+ *         ]
+ *     ],
+ *     body: "Body Content",
+ *     footer: [
+ *         (new Button(content: 'Salir'))->render(),
+ *         (new Button(content: 'Gurdar', class: ['button is-danger']))->render()
+ *     ]
+ *   );
+ */
+
 namespace components;
+
 use components\{Div, Button};
 
 class Card extends Components {
@@ -8,7 +27,7 @@ class Card extends Components {
     private $body;
     private $footer;
 
-    public function __construct($header, $body, $footer = null) {
+    public function __construct($header = null, $body, $footer = null) {
         $this->header = $header;
         $this->body = $body;
         $this->footer = $footer;
@@ -49,10 +68,10 @@ class Card extends Components {
     }
 
     private function renderBody() {
+
         return (new Div(
             class: ["card-content"],
             content: (new Div(
-                class: ['content'],
                 content: $this->renderText($this->body)
             ))->render()
         ))->render();
@@ -65,3 +84,4 @@ class Card extends Components {
         ))->render();
     }
 }
+

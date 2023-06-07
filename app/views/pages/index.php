@@ -16,10 +16,8 @@ $btn = new Button(
     data: ["id" => 1, "name" => "John Doe"],
     class: ["button is-primary", "is-medium"]
 );
-// $btn->title("hola");
+
 echo $btn->render();
-
-
 
 $crd = new Card(
     header: [
@@ -30,7 +28,7 @@ $crd = new Card(
             (new Button(content: 'Editar'))->render()
         ]
     ],
-    body: "body",
+    body: "body Content",
     footer: [
         (new Button(content: 'Salir'))->render(),
         (new Button(content: 'Gurdar', class: ['button is-danger']))->render()
@@ -39,6 +37,10 @@ $crd = new Card(
 
 
 echo $crd->render();
+
+$crdWidget = new CardWidget("Empleados","600","mdi mdi-finance mdi-48px");
+echo $crdWidget->render();
+
 ?>
 
 <?php require APP_ROOT . "/views/inc/footer.php"; ?>

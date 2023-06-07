@@ -49,7 +49,7 @@ class Components {
         $this->setAttribute("class",  $this->renderText($data, " "));
     }
 
-    public function getAttributes() {
+    public function getAttributes(): string {
         return $this->renderAttribute();
     }
 
