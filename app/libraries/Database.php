@@ -2,6 +2,8 @@
 /* PDO database class
 */
 namespace libraries;
+use PDO, PDOException;
+
 class Database {
     private $host = DB_HOST;
     private $user = DB_USER;
