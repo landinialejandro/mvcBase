@@ -5,7 +5,7 @@
  * 
  */
 
-namespace libraries;
+namespace app\libraries;
 
 class Core {
     protected $currentController = 'Pages';

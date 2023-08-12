@@ -10,7 +10,7 @@
  *          echo $btn->render();
  */
 
-namespace components;
+namespace app\components;
 
 class Button extends Components {
 

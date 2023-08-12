@@ -1,6 +1,7 @@
 <?php
 
-namespace components;
+namespace app\components;
+
 
 class AsideMenu extends Components {
 

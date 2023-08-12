@@ -1,6 +1,6 @@
 <?php
 //App root
-define('APP_ROOT', dirname(dirname(__FILE__)));
+define('APP_ROOT', dirname(dirname(dirname(__FILE__))));
 
 load_files(dirname(__FILE__));
 

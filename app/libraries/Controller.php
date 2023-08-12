@@ -1,7 +1,7 @@
 <?php
 //* base controller
 //* load models and views
-namespace libraries;
+namespace app\libraries;
 
 class Controller {
     //load model

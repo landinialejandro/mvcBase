@@ -3,4 +3,6 @@ include_once '../app/bootstrap.php';
 
 // Init Core Library
 
-$init = new libraries\Core;
+use app\libraries\Core;
+
+$init = new Core;

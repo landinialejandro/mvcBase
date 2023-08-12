@@ -1,12 +1,13 @@
 <?php
 
-namespace components;
+namespace app\components;
 
 use Error;
 
 class Components {
     private $content;
     private $attributes = [];
+    private $html;
 
     public function __construct(string $content = "", string $url = "", array $attributes = [], array $data = [], array $class = []) {
         $this->setContent($content);
@@ -74,5 +75,16 @@ class Components {
         } else {
             return $text;
         }
+    }
+
+    public function addHtml($text, $clearFirst = false) {
+        $clearFirst && $this->html = null;
+        $this->html .= $text;
+    }
+
+    public function renderHtml() {
+        $render = $this->html;
+        $this->html = null;
+        return $render;
     }
 }

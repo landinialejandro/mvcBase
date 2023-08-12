@@ -10,7 +10,7 @@
  *          echo $div->render();
  */
 
-namespace components;
+namespace app\components;
 
 class Div extends Components {
 

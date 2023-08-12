@@ -1,7 +1,6 @@
 <?php
-/* PDO database class
-*/
-namespace libraries;
+/* PDO database class */
+namespace app\libraries;
 use PDO, PDOException;
 
 class Database {

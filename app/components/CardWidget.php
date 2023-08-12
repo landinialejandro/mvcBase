@@ -1,7 +1,7 @@
 <?php
 
 
-namespace components;
+namespace app\components;
 
 class CardWidget extends Components {
     private $subTitle;
@@ -16,9 +16,18 @@ class CardWidget extends Components {
 
     public function render(): string {
 
-        $label = (new Components(content: $this->subTitle, class: ["subtitle is-spaced"]))->renderComponent("h3");
-        $label .= (new Components(content: $this->value, class: ["title"]))->renderComponent("h1");
-        $label = (new Div(content: $this->renderText($label), class: ["is-widget-label"]))->render();
+        $this->setContent($this->subTitle);
+        $this->setClassAttributes(["subtitle is-spaced"]);
+        $this->addHtml($this->renderComponent("h3"), true);
+
+        $this->setContent($this->value);
+        $this->setClassAttributes(["title"]);
+        $this->addHtml($this->renderComponent("h1"));
+
+        // $label = (new Components(content: $this->subTitle, class: ["subtitle is-spaced"]))->renderComponent("h3");
+        // $label .= (new Components(content: $this->value, class: ["title"]))->renderComponent("h1");
+        $text = $this->renderHtml();
+        $label = (new Div(content: $this->renderText($text), class: ["is-widget-label"]))->render();
         $label = (new Div(content: $this->renderText($label), class: ["level-item"]))->render();
 
         $icon = (new Components(class: [$this->icon]))->renderComponent("i");

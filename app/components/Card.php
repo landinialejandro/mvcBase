@@ -18,9 +18,8 @@
  *   );
  */
 
-namespace components;
+namespace app\components;
 
-use components\{Div, Button};
 
 class Card extends Components {
     private $header;
@@ -84,4 +83,3 @@ class Card extends Components {
         ))->render();
     }
 }
-

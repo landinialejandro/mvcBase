@@ -1,5 +1,5 @@
 <?php
-use libraries\Controller;
+use app\libraries\Controller;
 class Members extends Controller {
     protected $Model;
     public function __construct() {

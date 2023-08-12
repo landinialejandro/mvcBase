@@ -1,8 +1,8 @@
 <?php
 
-namespace components;
+namespace app\components;
 
-require APP_ROOT . "/views/inc/header.php";
+require APP_ROOT . "/app/views/inc/header.php";
 ?>
 <h1 class="title">
     <?php echo $data['title']; ?>
@@ -43,4 +43,4 @@ echo $crdWidget->render();
 
 ?>
 
-<?php require APP_ROOT . "/views/inc/footer.php"; ?>
+<?php require APP_ROOT . "/app/views/inc/footer.php"; ?>
