@@ -11,7 +11,7 @@ require APP_ROOT . "/app/views/inc/header.php";
 <?php
 
 $btn = new Button(
-    content: "Hola Mundo!",
+    content: "Hola Mundo!!",
     url: URL_ROOT . "/index.php",
     data: ["id" => 1, "name" => "John Doe"],
     class: ["button is-primary", "is-medium"]
@@ -38,7 +38,7 @@ $crd = new Card(
 
 echo $crd->render();
 
-$crdWidget = new CardWidget("Empleados","600","mdi mdi-finance mdi-48px");
+$crdWidget = new CardWidget("Empleados","1000","mdi mdi-finance mdi-48px");
 echo $crdWidget->render();
 
 ?>

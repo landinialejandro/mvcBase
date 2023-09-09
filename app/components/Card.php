@@ -26,10 +26,20 @@ class Card extends Components {
     private $body;
     private $footer;
 
-    public function __construct($header = null, $body, $footer = null) {
-        $this->header = $header;
-        $this->body = $body;
-        $this->footer = $footer;
+    public function __construct($header = null, $body = null, $footer = null) {
+        $this->setHeader($header);
+        $this->setBody($body);
+        $this->setFooter($footer);
+    }
+
+    public function setHeader($text) {
+        $this->header = $text;
+    }
+    public function setBody($text) {
+        $this->body = $text;
+    }
+    public function setFooter($text) {
+        $this->footer = $text;
     }
 
     public function render() {
@@ -50,6 +60,7 @@ class Card extends Components {
 
         if (isset($this->header['title'])) {
             $html[] = (new Components(content: $this->header['title'], class: ["card-title"]))->renderComponent("h3");
+
         }
 
         if (isset($this->header['dismiss'])) {

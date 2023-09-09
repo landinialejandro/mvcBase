@@ -67,6 +67,7 @@ class Components {
         return $attributeHtml;
     }
 
+    /** regresa un texto plano si se ingresa un array o un texto vacio si es nulo o no es un string */
     public function renderText($text, $separador = ""): string {
         if (is_array($text)) {
             return implode($separador, $text);
@@ -78,13 +79,17 @@ class Components {
     }
 
     public function addHtml($text, $clearFirst = false) {
-        $clearFirst && $this->html = null;
-        $this->html .= $text;
+        $clearFirst && $this->resetHtml();
+        $this->html []= $text;
+    }
+
+    public function resetHtml(){
+        $this->html = [];
     }
 
     public function renderHtml() {
-        $render = $this->html;
-        $this->html = null;
+        $render = $this->renderText($this->html);
+        $this->resetHtml();
         return $render;
     }
 }

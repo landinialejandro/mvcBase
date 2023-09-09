@@ -2,8 +2,9 @@
 
 
 namespace app\components;
+use app\components\{Components, Div};
 
-class CardWidget extends Components {
+class CardWidget extends Card {
     private $subTitle;
     private $value = [];
     private $icon = [];
@@ -16,20 +17,13 @@ class CardWidget extends Components {
 
     public function render(): string {
 
-        $this->setContent($this->subTitle);
-        $this->setClassAttributes(["subtitle is-spaced"]);
-        $this->addHtml($this->renderComponent("h3"), true);
 
-        $this->setContent($this->value);
-        $this->setClassAttributes(["title"]);
-        $this->addHtml($this->renderComponent("h1"));
+        $label = (new Components(content: $this->subTitle, class: ["subtitle is-spaced"]))->renderComponent("h3");
+        $label .= (new Components(content: $this->value, class: ["title"]))->renderComponent("h1");
 
-        // $label = (new Components(content: $this->subTitle, class: ["subtitle is-spaced"]))->renderComponent("h3");
-        // $label .= (new Components(content: $this->value, class: ["title"]))->renderComponent("h1");
-        $text = $this->renderHtml();
-        $label = (new Div(content: $this->renderText($text), class: ["is-widget-label"]))->render();
+        $label = (new Div(content: $this->renderText($label), class: ["is-widget-label"]))->render();
         $label = (new Div(content: $this->renderText($label), class: ["level-item"]))->render();
-
+        
         $icon = (new Components(class: [$this->icon]))->renderComponent("i");
         $icon = (new Components(content: $icon, class: ["icon has-text-primary is-large"]))->renderComponent("span");
         $icon = (new Div(content: $this->renderText($icon), class: ["is-widget-icon"]))->render();
@@ -37,6 +31,10 @@ class CardWidget extends Components {
 
         $html = (new Div(content: $label . $icon, class: ["level is-mobile"]))->render();
 
+        $this->setHeader([]);
+        $this->setBody($html);
+
+        // return parent::render();
         return (new Card(header: [], body: $html))->render();
     }
 }
