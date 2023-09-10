@@ -57,9 +57,8 @@ class Components {
         $html = "<{$component}{$this->getAttributes()}>{$this->getContent()}";
 
         // Si $closeComponent es verdadero, agrega la etiqueta de cierre.
-        if ($closeComponent)  $html .= "</{$component}>";
-
-        return $html;
+        $closingTag = $closeComponent ? "</{$component}>" : "";
+        return $html . $closingTag;
     }
 
     public function render() {
