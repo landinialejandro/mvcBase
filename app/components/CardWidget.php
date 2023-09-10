@@ -2,6 +2,7 @@
 
 
 namespace app\components;
+
 use app\components\{Components, Div};
 
 class CardWidget extends Card {
@@ -23,7 +24,7 @@ class CardWidget extends Card {
 
         $label = (new Div(new ComponentsAttributes(content: $this->renderText($label), class: ["is-widget-label"])))->render();
         $label = (new Div(new ComponentsAttributes(content: $this->renderText($label), class: ["level-item"])))->render();
-        
+
         $icon = (new Components(new ComponentsAttributes(class: [$this->icon])))->renderComponent("i");
         $icon = (new Components(new ComponentsAttributes(content: $icon, class: ["icon has-text-primary is-large"])))->renderComponent("span");
         $icon = (new Div(new ComponentsAttributes(content: $this->renderText($icon), class: ["is-widget-icon"])))->render();
@@ -31,8 +32,8 @@ class CardWidget extends Card {
 
         $html = (new Div(new ComponentsAttributes(content: $label . $icon, class: ["level is-mobile"])))->render();
 
-        $this->setHeader([]);
-        $this->setBody($html);
+        $this->header = [];
+        $this->body = $html;
 
         // return parent::render();
         return (new Card(header: [], body: $html))->render();

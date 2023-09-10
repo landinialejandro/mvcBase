@@ -20,47 +20,33 @@
 
 namespace app\components;
 
-
 class Card extends Components {
-    private $header;
-    private $body;
-    private $footer;
+    protected $header;
+    protected $body;
+    protected $footer;
 
     public function __construct($header = null, $body = null, $footer = null) {
-        $this->setHeader($header);
-        $this->setBody($body);
-        $this->setFooter($footer);
-    }
-
-    public function setHeader($text) {
-        $this->header = $text;
-    }
-    public function setBody($text) {
-        $this->body = $text;
-    }
-    public function setFooter($text) {
-        $this->footer = $text;
+        $this->header = $header;
+        $this->body = $body;
+        $this->footer = $footer;
     }
 
     public function render() {
-
         if ($this->header) $html[] = $this->renderHeader();
 
         if ($this->body) $html[] = $this->renderBody();
 
         if ($this->footer) $html[] = $this->renderFooter();
 
-        return (new Div(new ComponentsAttributes(
+        return $this->render_(new ComponentsAttributes(
             class: ['card'],
             content: $this->renderText($html)
-        )))->render();
+        ));
     }
 
     private function renderHeader() {
-
         if (isset($this->header['title'])) {
             $html[] = (new Components(new ComponentsAttributes(content: $this->header['title'], class: ["card-title"])))->renderComponent("h3");
-
         }
 
         if (isset($this->header['dismiss'])) {
@@ -68,29 +54,32 @@ class Card extends Components {
         }
 
         if (isset($this->header['toolbox'])) {
-            $html[] = (new Div(new ComponentsAttributes(content: $this->renderText($this->header['toolbox']), class: ["toolbox"])))->render();
+            $html[] = $this->render_(new ComponentsAttributes(content: $this->renderText($this->header['toolbox']), class: ["toolbox"]));
         }
 
-        return (new Div( new ComponentsAttributes(
+        return $this->render_(new ComponentsAttributes(
             class: ['card-header'],
             content: $this->renderText($html)
-        )))->render();
+        ));
     }
 
     private function renderBody() {
-
-        return (new Div( new ComponentsAttributes(
+        return $this->render_(new ComponentsAttributes(
             class: ["card-content"],
-            content: (new Div(new ComponentsAttributes(
+            content: $this->render_(new ComponentsAttributes(
                 content: $this->renderText($this->body)
-            )))->render()
-        )))->render();
+            ))
+        ));
     }
 
     private function renderFooter() {
-        return (new Div(new ComponentsAttributes(
+        return $this->render_(new ComponentsAttributes(
             class: ['card-footer'],
             content: $this->renderText($this->footer)
-        )))->render();
+        ));
+    }
+
+    private function render_(ComponentsAttributes $attr) {
+        return (new Div($attr))->render();
     }
 }
