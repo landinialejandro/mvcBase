@@ -52,13 +52,19 @@ class Components {
     }
 
     /** return a component tag like <div attributes>content</div> */
-    public function renderComponent(string $component): string {
-        return "<{$component}{$this->getAttributes()}>{$this->getContent()}</{$component}>";
+    public function renderComponent(string $component, bool $closeComponent = true): string {
+        // Concatena el inicio del componente (etiqueta de apertura) con los atributos y contenido.
+        $html = "<{$component}{$this->getAttributes()}>{$this->getContent()}";
+
+        // Si $closeComponent es verdadero, agrega la etiqueta de cierre.
+        if ($closeComponent)  $html .= "</{$component}>";
+
+        return $html;
     }
 
     public function render() {
         // extended class for customizing rendering output
-        return '';  
+        return '';
     }
 
     private function renderAttribute(): string {
@@ -86,10 +92,10 @@ class Components {
 
     public function addHtml($text, $clearFirst = false) {
         $clearFirst && $this->resetHtml();
-        $this->html []= $text;
+        $this->html[] = $text;
     }
 
-    public function resetHtml(){
+    public function resetHtml() {
         $this->html = [];
     }
 
