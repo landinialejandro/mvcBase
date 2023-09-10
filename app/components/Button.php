@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Example $btn = new Button(
+ * Example $btn = new Button( new ComponentsAttributes(
  *              content: "Hola Mundo", 
  *              data:  ["id" => 1, "name" => "MyData"],
  *              url: "index.php", 
  *              attributes: ['class' => ["button is-primary", "is-medium"]]
- *              );
+ *              ));
  *          echo $btn->render();
  */
 
