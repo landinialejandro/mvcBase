@@ -33,9 +33,7 @@ class Card extends Components {
 
     public function render() {
         if ($this->header) $html[] = $this->renderHeader();
-
         if ($this->body) $html[] = $this->renderBody();
-
         if ($this->footer) $html[] = $this->renderFooter();
 
         return $this->render_(new ComponentsAttributes(
