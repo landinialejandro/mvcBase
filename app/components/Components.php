@@ -40,7 +40,9 @@ class Components {
         }
     }
 
-    /* $data = ['btn','prymary','btn large']  */
+    /* input $data = ['btn','prymary','btn large']
+       add input class to attribute array 
+    */
     public function setClassAttributes(array $data) {
         $this->setAttribute("class",  $this->renderText($data, " "));
     }
@@ -49,8 +51,14 @@ class Components {
         return $this->renderAttribute();
     }
 
+    /** return a component tag like <div attributes>content</div> */
     public function renderComponent(string $component): string {
         return "<{$component}{$this->getAttributes()}>{$this->getContent()}</{$component}>";
+    }
+
+    public function render() {
+        // extended class for customizing rendering output
+        return '';  
     }
 
     private function renderAttribute(): string {
