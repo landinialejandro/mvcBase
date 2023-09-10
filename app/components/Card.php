@@ -50,47 +50,47 @@ class Card extends Components {
 
         if ($this->footer) $html[] = $this->renderFooter();
 
-        return (new Div(
+        return (new Div(new ComponentsAttributes(
             class: ['card'],
             content: $this->renderText($html)
-        ))->render();
+        )))->render();
     }
 
     private function renderHeader() {
 
         if (isset($this->header['title'])) {
-            $html[] = (new Components(content: $this->header['title'], class: ["card-title"]))->renderComponent("h3");
+            $html[] = (new Components(new ComponentsAttributes(content: $this->header['title'], class: ["card-title"])))->renderComponent("h3");
 
         }
 
         if (isset($this->header['dismiss'])) {
-            $html[] = (new Button(class: ["delete"]))->render();
+            $html[] = (new Button(new ComponentsAttributes(class: ["delete"])))->render();
         }
 
         if (isset($this->header['toolbox'])) {
-            $html[] = (new Div(content: $this->renderText($this->header['toolbox']), class: ["toolbox"]))->render();
+            $html[] = (new Div(new ComponentsAttributes(content: $this->renderText($this->header['toolbox']), class: ["toolbox"])))->render();
         }
 
-        return (new Div(
+        return (new Div( new ComponentsAttributes(
             class: ['card-header'],
             content: $this->renderText($html)
-        ))->render();
+        )))->render();
     }
 
     private function renderBody() {
 
-        return (new Div(
+        return (new Div( new ComponentsAttributes(
             class: ["card-content"],
-            content: (new Div(
+            content: (new Div(new ComponentsAttributes(
                 content: $this->renderText($this->body)
-            ))->render()
-        ))->render();
+            )))->render()
+        )))->render();
     }
 
     private function renderFooter() {
-        return (new Div(
+        return (new Div(new ComponentsAttributes(
             class: ['card-footer'],
             content: $this->renderText($this->footer)
-        ))->render();
+        )))->render();
     }
 }

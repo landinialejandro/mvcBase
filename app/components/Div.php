@@ -14,8 +14,8 @@ namespace app\components;
 
 class Div extends Components {
 
-    public function __construct(string $content = "", string $url = "", array $attributes = [], array $data = [], array $class = []) {
-        parent::__construct(content: $content,  url: $url, attributes: $attributes, data: $data, class: $class);
+    public function __construct(ComponentsAttributes $attr) {
+        parent::__construct($attr);
     }
 
     public function render(): string {

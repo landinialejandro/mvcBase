@@ -10,12 +10,12 @@ require APP_ROOT . "/app/views/inc/header.php";
 <p class="subtitle">MVC Model test</p>
 <?php
 
-$btn = new Button(
+$btn = new Button(new ComponentsAttributes(
     content: "Hola Mundo!!",
     url: URL_ROOT . "/index.php",
     data: ["id" => 1, "name" => "John Doe"],
     class: ["button is-primary", "is-medium"]
-);
+));
 
 echo $btn->render();
 
@@ -24,14 +24,14 @@ $crd = new Card(
         'title' => 'Mi tarjeta',
         'dismiss' => true,
         'toolbox' => [
-            (new Button(content: 'Maximizar', class: ['button delete']))->render(),
-            (new Button(content: 'Editar'))->render()
+            (new Button(new ComponentsAttributes(content: 'Maximizar', class: ['button delete'])))->render(),
+            (new Button(new ComponentsAttributes(content: 'Editar')))->render()
         ]
     ],
     body: "body Content",
     footer: [
-        (new Button(content: 'Salir'))->render(),
-        (new Button(content: 'Gurdar', class: ['button is-danger']))->render()
+        (new Button(new ComponentsAttributes(content: 'Salir')))->render(),
+        (new Button(new ComponentsAttributes(content: 'Gurdar', class: ['button is-danger'])))->render()
     ]
 );
 
