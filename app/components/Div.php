@@ -14,12 +14,13 @@ namespace app\components;
 
 class Div extends Components {
 
-    public function __construct(ComponentsAttributes $attr) {
+    public function __construct(ComponentsAttributes $attr = null) {
         parent::__construct($attr);
     }
 
     public function render(): string {
-        return parent::renderComponent('div');
+        $this->setTag('div');
+        return parent::renderComponent();
     }
 
 }

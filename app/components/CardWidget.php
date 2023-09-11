@@ -11,6 +11,7 @@ class CardWidget extends Card {
     private $icon = [];
 
     public function __construct(string $subTitle = "", string $value = "", string $icon = "") {
+        parent::__construct(new ComponentsAttributes());
         $this->subTitle = $subTitle;
         $this->value = $value;
         $this->icon = $icon;
@@ -18,25 +19,32 @@ class CardWidget extends Card {
 
     public function render(): string {
 
+//todo: corregir el render
 
-        $label = (new Components(new ComponentsAttributes(content: $this->subTitle, class: ["subtitle is-spaced"])))->renderComponent("h3");
-        $label .= (new Components(new ComponentsAttributes(content: $this->value, class: ["title"])))->renderComponent("h1");
+        $level = new Components(new ComponentsAttributes(tag: 'div', class: ["level is-mobile"]));
 
-        $label = (new Div(new ComponentsAttributes(content: $this->renderText($label), class: ["is-widget-label"])))->render();
-        $label = (new Div(new ComponentsAttributes(content: $this->renderText($label), class: ["level-item"])))->render();
+        $label = new Components(new ComponentsAttributes(tag: 'div', class: ["level-item"]));
+        $lw = new Components(new ComponentsAttributes(tag: 'div', class: ["is-widget-label"]));
+        $h3 = new Components(new ComponentsAttributes(tag: 'h3', content: $this->subTitle, class: ["subtitle is-spaced"]));
+        $h1 = new Components(new ComponentsAttributes(tag: 'h1', content: $this->value, class: ["title"]));
+        $lw->addChild($h3);
+        $lw->addChild($h1);
 
-        $icon = (new Components(new ComponentsAttributes(class: [$this->icon])))->renderComponent("i");
-        $icon = (new Components(new ComponentsAttributes(content: $icon, class: ["icon has-text-primary is-large"])))->renderComponent("span");
-        $icon = (new Div(new ComponentsAttributes(content: $this->renderText($icon), class: ["is-widget-icon"])))->render();
-        $icon = (new Div(new ComponentsAttributes(content: $this->renderText($icon), class: ["level-item has-widget-icon"])))->render();
+        $label->addChild($lw);
 
-        $html = (new Div(new ComponentsAttributes(content: $label . $icon, class: ["level is-mobile"])))->render();
+        $icon = new Components(new ComponentsAttributes(tag: 'div', class: ["level-item has-widget-icon"]));
+        $iw = new Components(new ComponentsAttributes(tag: 'div', class: ["is-widget-icon"]));
+        $iw->addChild((new Components(new ComponentsAttributes(tag: 'span', class: ["icon has-text-primary is-large"])))
+            ->addChild(new Components(new ComponentsAttributes(tag: 'i', class: [$this->icon]))));
 
-        $this->header = [];
-        $this->body = $html;
+        $icon->addChild($iw);
+        $level->addChild($label);
+        $level->addChild($icon);
 
-        // return parent::render();
-        return (new Card(header: [], body: $html))->render();
+        $card = new Card(header: [], body: $level->renderComponent());
+        //$card->addChild($level);
+
+        return $card->render();
     }
 }
 
@@ -59,3 +67,4 @@ class CardWidget extends Card {
  *              </div>
  *            </div>
  */
+

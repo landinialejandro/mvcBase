@@ -7,8 +7,9 @@ use Error;
 class Components {
     private ComponentsAttributes $attr;
     private $html;
+    private $children = [];
 
-    public function __construct(ComponentsAttributes $attr) {
+    public function __construct(ComponentsAttributes $attr = NULL) {
         $this->attr = $attr;
     }
 
@@ -20,12 +21,21 @@ class Components {
         return $this->attr->content;
     }
 
+    public function setTag(string $tag) {
+        $this->attr->tag = $tag;
+    }
+
     public function setAttribute(string $attribute, string $value) {
         if (is_string($attribute) && is_string($value)) {
             $this->attr->attributes[$attribute] = $value;
         } else {
             throw new Error('Both attribute and value must be valid strings, attr: ' . $attribute . ", value: " . $value);
         }
+    }
+
+    public function addChild(Components $child) {
+        $this->children[] = $child;
+        return $this;
     }
 
     /* $attributes = ['class' => ["button is-primary", "is-medium"]]  */
@@ -51,13 +61,22 @@ class Components {
         return $this->renderAttribute();
     }
 
+    public function getChildrens(): string {
+        $html = "";
+        foreach ($this->children as $child) {
+            $html .= $child->renderComponent();
+        }
+        return $html;
+    }
+
     /** return a component tag like <div attributes>content</div> */
-    public function renderComponent(string $component, bool $closeComponent = true): string {
+    public function renderComponent(string $component = "", bool $closeComponent = true): string {
+        if ($component) $this->attr->tag = $component;
         // Concatena el inicio del componente (etiqueta de apertura) con los atributos y contenido.
-        $html = "<{$component}{$this->getAttributes()}>{$this->getContent()}";
+        $html = "<{$this->attr->tag}{$this->getAttributes()}>{$this->getContent()}{$this->getChildrens()}";
 
         // Si $closeComponent es verdadero, agrega la etiqueta de cierre.
-        $closingTag = $closeComponent ? "</{$component}>" : "";
+        $closingTag = $closeComponent ? "</{$this->attr->tag}>" : "";
         return $html . $closingTag;
     }
 

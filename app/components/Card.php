@@ -26,6 +26,8 @@ class Card extends Components {
     protected $footer;
 
     public function __construct($header = null, $body = null, $footer = null) {
+        parent::__construct(new ComponentsAttributes()); // Llama al constructor de la clase padre
+
         $this->header = $header;
         $this->body = $body;
         $this->footer = $footer;
@@ -44,10 +46,10 @@ class Card extends Components {
 
     private function renderHeader() {
         if (isset($this->header['title'])) {
-            $html[] = (new Components(new ComponentsAttributes(content: $this->header['title'], class: ["card-title"])))->renderComponent("h3");
+            $html[] = (new Components(new ComponentsAttributes(tag: 'h3', content: $this->header['title'], class: ["card-title"])))->renderComponent();
         }
 
-        if (isset($this->header['dismiss'])) {
+        if (isset($this->header['dismiss']) && $this->header['dismiss'] === true) {
             $html[] = (new Button(new ComponentsAttributes(class: ["delete"])))->render();
         }
 
