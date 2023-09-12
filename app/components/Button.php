@@ -16,10 +16,7 @@ class Button extends Components {
 
     public function __construct(ComponentsAttributes $attr) {
         parent::__construct($attr);
-    }
-
-    public function render(): string {
-        return parent::renderComponent('button');
+        $this->setTag('button');
     }
 
     public function title($title) {

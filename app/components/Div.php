@@ -16,11 +16,7 @@ class Div extends Components {
 
     public function __construct(ComponentsAttributes $attr = null) {
         parent::__construct($attr);
-    }
-
-    public function render(): string {
         $this->setTag('div');
-        return parent::renderComponent();
     }
 
 }

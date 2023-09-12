@@ -64,7 +64,7 @@ class Components {
     public function getChildrens(): string {
         $html = "";
         foreach ($this->children as $child) {
-            $html .= $child->renderComponent();
+            $html .= $child->render();
         }
         return $html;
     }
@@ -82,7 +82,8 @@ class Components {
 
     public function render() {
         // extended class for customizing rendering output
-        return '';
+        return $this->renderComponent();
+        // return '';
     }
 
     private function renderAttribute(): string {

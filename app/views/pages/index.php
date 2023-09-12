@@ -19,24 +19,32 @@ $btn = new Button(new ComponentsAttributes(
 
 echo $btn->render();
 
-$crd = new Card(
-    header: [
-        'title' => 'Mi tarjeta',
-        'dismiss' => true,
-        'toolbox' => [
-            (new Button(new ComponentsAttributes(content: 'Maximizar', class: ['button delete'])))->render(),
-            (new Button(new ComponentsAttributes(content: 'Editar')))->render()
-        ]
-    ],
-    body: "body Content",
-    footer: [
-        (new Button(new ComponentsAttributes(content: 'Salir')))->render(),
-        (new Button(new ComponentsAttributes(content: 'Gurdar', class: ['button is-danger'])))->render()
-    ]
-);
+// $crd = new Card(
+//     header: [
+//         'title' => 'Mi tarjeta',
+//         'dismiss' => true,
+//         'toolbox' => [
+//             (new Button(new ComponentsAttributes(content: 'Maximizar', class: ['button delete'])))->render(),
+//             (new Button(new ComponentsAttributes(content: 'Editar')))->render()
+//         ]
+//     ],
+//     body: "body Content",
+//     footer: [
+//         (new Button(new ComponentsAttributes(content: 'Salir')))->render(),
+//         (new Button(new ComponentsAttributes(content: 'Gurdar', class: ['button is-danger'])))->render()
+//     ]
+// );
 
+// echo $crd->render();
 
-echo $crd->render();
+$crd1 = new Card();
+$headerCrd1 = new Div(new ComponentsAttributes(class: ['card-header']));
+$headerCrd1->addChild(new Components(new ComponentsAttributes(tag: 'h3', content: "mi titulo", class: ["card-title"])));
+$headerCrd1->addChild(new Button(new ComponentsAttributes(class: ["delete"])));
+
+$crd1->addChild($headerCrd1);
+
+echo $crd1->render();
 
 $crdWidget = new CardWidget("Empleados","1000","mdi mdi-finance mdi-48px");
 echo $crdWidget->render();

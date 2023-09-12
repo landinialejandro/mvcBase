@@ -19,30 +19,28 @@ class CardWidget extends Card {
 
     public function render(): string {
 
-//todo: corregir el render
 
-        $level = new Components(new ComponentsAttributes(tag: 'div', class: ["level is-mobile"]));
+        $level = new Div(new ComponentsAttributes(class: ["level is-mobile"]));
 
-        $label = new Components(new ComponentsAttributes(tag: 'div', class: ["level-item"]));
-        $lw = new Components(new ComponentsAttributes(tag: 'div', class: ["is-widget-label"]));
-        $h3 = new Components(new ComponentsAttributes(tag: 'h3', content: $this->subTitle, class: ["subtitle is-spaced"]));
-        $h1 = new Components(new ComponentsAttributes(tag: 'h1', content: $this->value, class: ["title"]));
-        $lw->addChild($h3);
-        $lw->addChild($h1);
+        $label = new Div(new ComponentsAttributes(class: ["level-item"]));
+        $lw = new Div(new ComponentsAttributes(class: ["is-widget-label"]));
+        $lw->addChild(new Components(new ComponentsAttributes(tag: 'h3', content: $this->subTitle, class: ["subtitle is-spaced"])));
+        $lw->addChild(new Components(new ComponentsAttributes(tag: 'h1', content: $this->value, class: ["title"])));
 
         $label->addChild($lw);
 
-        $icon = new Components(new ComponentsAttributes(tag: 'div', class: ["level-item has-widget-icon"]));
-        $iw = new Components(new ComponentsAttributes(tag: 'div', class: ["is-widget-icon"]));
+        $icon = new Div(new ComponentsAttributes(class: ["level-item has-widget-icon"]));
+        $iw = new Div(new ComponentsAttributes(class: ["is-widget-icon"]));
         $iw->addChild((new Components(new ComponentsAttributes(tag: 'span', class: ["icon has-text-primary is-large"])))
             ->addChild(new Components(new ComponentsAttributes(tag: 'i', class: [$this->icon]))));
 
         $icon->addChild($iw);
         $level->addChild($label);
         $level->addChild($icon);
-
-        $card = new Card(header: [], body: $level->renderComponent());
-        //$card->addChild($level);
+        //todo: agregar childs al redenr del card
+        // $card = new Card(header: [], body: $level->render());
+        $card = new Card();
+        $card->addChild($level);
 
         return $card->render();
     }
