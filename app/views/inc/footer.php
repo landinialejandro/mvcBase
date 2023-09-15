@@ -25,7 +25,7 @@
     <!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
     
-    <script type="text/javascript" src="<?php echo URL_ROOT; ?>/js/one.js">
+    <script type="text/javascript" src="<?php echo URL_ROOT; ?>/one/js/main.js">
     <script type="text/javascript" src="<?php echo URL_ROOT; ?>/js/main.js">
 
 </body>
