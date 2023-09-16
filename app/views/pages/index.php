@@ -9,15 +9,21 @@ require APP_ROOT . "/app/views/inc/header.php";
 </h1>
 <p class="subtitle">MVC Model test</p>
 <?php
-
+$i = new Icon(new ComponentsAttributes(class: ["mdi mdi-upload"]));
 $btn = new Button(new ComponentsAttributes(
-    content: "Hola Mundo!!",
+    content: $i->render() . ", Hola Mundo!!",
     url: URL_ROOT . "/index.php",
     data: ["id" => 1, "name" => "John Doe"],
-    class: ["button is-primary", "is-medium"]
+    class: ["button is-primary", "is-medium"],
+    wrapContent: true
 ));
-
+$btn->addChild(new Text( $i->render() . ", Hola Mundo!!"));
 echo $btn->render();
+$btn1 = new Button(new ComponentsAttributes(
+    content: "Save",
+    class: ["button is-success"],
+));
+echo $btn1->render();
 
 // $crd = new Card(
 //     header: [
@@ -38,15 +44,16 @@ echo $btn->render();
 // echo $crd->render();
 
 $crd1 = new Card();
-$headerCrd1 = new Div(new ComponentsAttributes(class: ['card-header']));
-$headerCrd1->addChild(new Components(new ComponentsAttributes(tag: 'h3', content: "mi titulo", class: ["card-title"])));
-$headerCrd1->addChild(new Button(new ComponentsAttributes(class: ["delete"])));
 
-$crd1->addChild($headerCrd1);
+$crd1->addChild($crd1->addCardHeader("Mi titulo", true));
+$content = $crd1->addCardContent();
 
 echo $crd1->render();
 
-$crdWidget = new CardWidget("Empleados","1000","mdi mdi-finance mdi-48px");
+$text = new Components(new ComponentsAttributes(content:"texto como objeto"));
+echo $text->render();
+
+$crdWidget = new CardWidget("Empleados", "1000", "mdi mdi-finance mdi-48px");
 echo $crdWidget->render();
 
 ?>

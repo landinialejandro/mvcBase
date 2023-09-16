@@ -22,7 +22,6 @@ namespace app\components;
 
 class Card extends Components {
     protected $header;
-    protected $body;
     protected $footer;
     public $title;
     // public $dismiss;
@@ -31,36 +30,28 @@ class Card extends Components {
         parent::__construct(new ComponentsAttributes(tag: 'div', class: ["card"])); // Llama al constructor de la clase padre
     }
 
+    public function addCardHeader(string $title = "", bool $dismiss = false, Components $toolbox = null): Components {
 
-    private function addHeaderCard(string $title = "", bool $dismiss = false, Components $toolbox = null) {
-
-        $header = new Components(new ComponentsAttributes( tag:'header', class: ["card-content"]));
+        $cardHeader = new Components(new ComponentsAttributes(tag: 'header', class: ["card-header"]));
 
         if ($title) {
-            $header->addChild(new Components(new ComponentsAttributes(tag: 'p', content: $title, class: ["card-header-title"])));
+            $cardHeader->addChild(new Components(new ComponentsAttributes(
+                tag: 'p',
+                content: $title,
+                class: ["card-header-title"]
+            )));
         }
 
-        if ($dismiss === true) {
-            $header->addChild(new Button(new ComponentsAttributes(class: ["delete"])));
-        }
+        $dismiss && $cardHeader->addChild(new Button(new ComponentsAttributes(class: ["delete"])));
 
-        if (isset($this->header['toolbox'])) {
-            //$this->addChild(new ComponentsAttributes(content: $this->renderText($this->header['toolbox']), class: ["toolbox"]));
+        if (is_null($toolbox)) {
+            //todo: añadir código para toolbox
         }
-
-        // return $this->render(new ComponentsAttributes(
-        //     class: ['card-header'],
-        //     content: $this->renderText($html)
-        // ));
+        return $cardHeader;
     }
-
-    private function renderBody() {
-        return $this->render(new ComponentsAttributes(
-            class: ["card-content"],
-            content: $this->render(new ComponentsAttributes(
-                content: $this->renderText($this->body)
-            ))
-        ));
+    public function addCardContent(Components $content = null): Components {
+        $cardContent = new Div(new ComponentsAttributes(class: ["card-content"]));
+        return $cardContent->addChild($content);
     }
 
     private function renderFooter() {
@@ -71,7 +62,7 @@ class Card extends Components {
     }
 }
 
-?>
+/* 
 <div class="card">
     <header class="card-header">
         <p class="card-header-title">
@@ -102,4 +93,4 @@ class Card extends Components {
             </div>
         </div>
     </div>
-</div>
+</div> */
