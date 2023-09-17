@@ -18,8 +18,4 @@ class Button extends Components {
         parent::__construct($attr);
         $this->setTag('button');
     }
-
-    public function title($title) {
-        parent::setContent($title);
-    }
 }

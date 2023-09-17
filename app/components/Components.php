@@ -6,7 +6,6 @@ use Error;
 
 class Components {
     private ComponentsAttributes $attr;
-    // private $html;
     private $children = [];
 
     public function __construct(ComponentsAttributes $attr = NULL) {
@@ -15,14 +14,6 @@ class Components {
         } else {
             $this->attr = $attr;
         };
-    }
-
-    public function setContent(string $content = "") {
-        $this->attr->content = $content;
-    }
-
-    public function getContent(): string {
-        return $this->renderText($this->attr->content);
     }
 
     private function wrapContent(Components $content): Components {
@@ -61,7 +52,7 @@ class Components {
         if (!empty($data)) $this->setAttribute("class",  $this->renderText($data, " "));
     }
 
-    public function getAttributes(): string {
+    private function getAttributes(): string {
         return $this->renderAttribute();
     }
 
@@ -73,23 +64,22 @@ class Components {
         return $this;
     }
 
-    public function getChildrens(): string {
+    private function getChildrens(): string {
         $html = "";
         foreach ($this->children as $child) {
-            
             $html .= $child->render();
         }
         return $html;
     }
 
     /** return a component tag like <div attributes>content</div> */
-    public function renderComponent(string $component = ""): string {
+    private function renderComponent(string $component = ""): string {
 
-        if ($this->attr->tag === "") return $this->getContent();
+        if ($this->attr->tag === "") return $this->renderText($this->attr->content);
         if ($component) $this->attr->tag = $component;
         // Concatena el inicio del componente (etiqueta de apertura) con los atributos y contenido.
         $html = "<{$this->attr->tag}{$this->getAttributes()}>{$this->getChildrens()}";
-        // Si $closeComponent es verdadero, agrega la etiqueta de cierre.
+        // Si closeElement es verdadero, agrega la etiqueta de cierre.
         $closingTag = $this->attr->closeElement ? "</{$this->attr->tag}>" : "";
 
         return $html . $closingTag;
@@ -124,19 +114,4 @@ class Components {
             return $a;
         }
     }
-
-    // public function addHtml($text, $clearFirst = false) {
-    //     $clearFirst && $this->resetHtml();
-    //     $this->html[] = $text;
-    // }
-
-    // public function resetHtml() {
-    //     $this->html = [];
-    // }
-
-    // public function renderHtml() {
-    //     $render = $this->renderText($this->html);
-    //     $this->resetHtml();
-    //     return $render;
-    // }
 }
