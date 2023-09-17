@@ -1,14 +1,20 @@
 <?php
+
 namespace app\components;
+
 use Error;
 
 class Components {
     private ComponentsAttributes $attr;
-    private $html;
+    // private $html;
     private $children = [];
 
     public function __construct(ComponentsAttributes $attr = NULL) {
-        $this->attr = $attr;
+        if (is_null($attr)) {
+            $this->attr = new ComponentsAttributes;
+        } else {
+            $this->attr = $attr;
+        };
     }
 
     public function setContent(string $content = "") {
@@ -16,28 +22,13 @@ class Components {
     }
 
     public function getContent(): string {
-        if ($this->attr->wrapContent) {
-            $wrapper = new Components(new ComponentsAttributes());
-            $html = "";
-            if (is_array($this->attr->content)) {
-                foreach ($this->attr->content as $value) {
-                    $wrapper = $this->wrapContent(new Text($value));
-                    $html .= $wrapper->render();
-                }
-            } else {
-                $wrapper = $this->wrapContent(new Text($this->renderText($this->attr->content)));
-                $html .= $wrapper->render();
-            }
-            $this->setContent($html);
-        }
         return $this->renderText($this->attr->content);
     }
 
-    private function wrapContent(Components $content ): Components {
+    private function wrapContent(Components $content): Components {
         $wrapper = new Components(new ComponentsAttributes(tag: $this->attr->wraperElement));
         return $wrapper->addChild($content);
     }
-
 
     public function setTag(string $tag) {
         $this->attr->tag = $tag;
@@ -49,11 +40,6 @@ class Components {
         } else {
             throw new Error('Both attribute and value must be valid strings, attr: ' . $attribute . ", value: " . $value);
         }
-    }
-
-    public function addChild(Components $child = null): Components {
-        $this->children[] = $child;
-        return $this;
     }
 
     /* $attributes = ['class' => ["button is-primary", "is-medium"]]  */
@@ -72,30 +58,39 @@ class Components {
        add input class to attribute array 
     */
     public function setClassAttributes(array $data) {
-        $this->setAttribute("class",  $this->renderText($data, " "));
+        if (!empty($data)) $this->setAttribute("class",  $this->renderText($data, " "));
     }
 
     public function getAttributes(): string {
         return $this->renderAttribute();
     }
 
+    public function addChild(Components $child = null): Components {
+        if ( $this->attr->wrapContent ){ 
+            $child = $child->wrapContent($child);
+        }
+        $this->children[] = $child;
+        return $this;
+    }
+
     public function getChildrens(): string {
         $html = "";
         foreach ($this->children as $child) {
+            
             $html .= $child->render();
         }
         return $html;
     }
 
     /** return a component tag like <div attributes>content</div> */
-    public function renderComponent(string $component = "", bool $closeComponent = true): string {
-        
+    public function renderComponent(string $component = ""): string {
+
         if ($this->attr->tag === "") return $this->getContent();
         if ($component) $this->attr->tag = $component;
         // Concatena el inicio del componente (etiqueta de apertura) con los atributos y contenido.
         $html = "<{$this->attr->tag}{$this->getAttributes()}>{$this->getChildrens()}";
         // Si $closeComponent es verdadero, agrega la etiqueta de cierre.
-        $closingTag = $closeComponent ? "</{$this->attr->tag}>" : "";
+        $closingTag = $this->attr->closeElement ? "</{$this->attr->tag}>" : "";
 
         return $html . $closingTag;
     }
@@ -103,7 +98,6 @@ class Components {
     public function render() {
         // extended class for customizing rendering output
         return $this->renderComponent();
-        // return '';
     }
 
     private function renderAttribute(): string {
@@ -131,18 +125,18 @@ class Components {
         }
     }
 
-    public function addHtml($text, $clearFirst = false) {
-        $clearFirst && $this->resetHtml();
-        $this->html[] = $text;
-    }
+    // public function addHtml($text, $clearFirst = false) {
+    //     $clearFirst && $this->resetHtml();
+    //     $this->html[] = $text;
+    // }
 
-    public function resetHtml() {
-        $this->html = [];
-    }
+    // public function resetHtml() {
+    //     $this->html = [];
+    // }
 
-    public function renderHtml() {
-        $render = $this->renderText($this->html);
-        $this->resetHtml();
-        return $render;
-    }
+    // public function renderHtml() {
+    //     $render = $this->renderText($this->html);
+    //     $this->resetHtml();
+    //     return $render;
+    // }
 }

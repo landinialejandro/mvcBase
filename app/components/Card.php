@@ -21,44 +21,45 @@
 namespace app\components;
 
 class Card extends Components {
-    protected $header;
-    protected $footer;
-    public $title;
-    // public $dismiss;
+    private Components $cardContent;
+    private Components $cardHeader;
+    private Components $cardFooter;
 
     public function __construct() {
         parent::__construct(new ComponentsAttributes(tag: 'div', class: ["card"])); // Llama al constructor de la clase padre
+        $this->cardContent = new Div(new ComponentsAttributes(class: ["card-content"]));
+        $this->cardHeader = new Components(new ComponentsAttributes(tag: 'header', class: ["card-header"]));
+        $this->cardFooter = new Div(new ComponentsAttributes(tag: "footer", class: ["card-footer"]));
+
+        $this->addChild($this->cardHeader);
+        $this->addChild($this->cardContent);
+        $this->addChild($this->cardFooter);
     }
 
     public function addCardHeader(string $title = "", bool $dismiss = false, Components $toolbox = null): Components {
 
-        $cardHeader = new Components(new ComponentsAttributes(tag: 'header', class: ["card-header"]));
-
         if ($title) {
-            $cardHeader->addChild(new Components(new ComponentsAttributes(
+            $this->cardHeader->addChild((new Components(new ComponentsAttributes(
                 tag: 'p',
-                content: $title,
                 class: ["card-header-title"]
-            )));
+            )))->addChild(new Text($title)));
         }
 
-        $dismiss && $cardHeader->addChild(new Button(new ComponentsAttributes(class: ["delete"])));
+        $dismiss && $this->cardHeader->addChild(new button(new ComponentsAttributes(class: ["card-header-icon delete"], attributes: ["aria-label" => "more options"])));
 
         if (is_null($toolbox)) {
             //todo: añadir código para toolbox
         }
-        return $cardHeader;
+        return $this;
     }
     public function addCardContent(Components $content = null): Components {
-        $cardContent = new Div(new ComponentsAttributes(class: ["card-content"]));
-        return $cardContent->addChild($content);
+        $this->cardContent->addChild($content);
+        return $this;
     }
 
-    private function renderFooter() {
-        return $this->render(new ComponentsAttributes(
-            class: ['card-footer'],
-            content: $this->renderText($this->footer)
-        ));
+    public function addCardFooter(Components $content = null): Components {
+        $this->cardFooter->addChild($content);
+        return $this;
     }
 }
 

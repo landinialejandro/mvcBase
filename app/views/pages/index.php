@@ -9,52 +9,37 @@ require APP_ROOT . "/app/views/inc/header.php";
 </h1>
 <p class="subtitle">MVC Model test</p>
 <?php
-$i = new Icon(new ComponentsAttributes(class: ["mdi mdi-upload"]));
-$btn = new Button(new ComponentsAttributes(
-    content: $i->render() . ", Hola Mundo!!",
-    url: URL_ROOT . "/index.php",
-    data: ["id" => 1, "name" => "John Doe"],
-    class: ["button is-primary", "is-medium"],
-    wrapContent: true
-));
-$btn->addChild(new Text( $i->render() . ", Hola Mundo!!"));
-echo $btn->render();
+$btn = (new Button(
+    new ComponentsAttributes(
+        url: URL_ROOT . "/index.php",
+        data: ["id" => 1, "name" => "John Doe"],
+        class: ["button is-primary", "is-medium"],
+        wrapContent: true
+    )
+))
+    ->addChild(new Icon(new ComponentsAttributes(class: ["mdi mdi-upload"])))
+    ->addChild(new Text("Hola Mundo!!"));
+
 $btn1 = new Button(new ComponentsAttributes(
-    content: "Save",
     class: ["button is-success"],
 ));
-echo $btn1->render();
-
-// $crd = new Card(
-//     header: [
-//         'title' => 'Mi tarjeta',
-//         'dismiss' => true,
-//         'toolbox' => [
-//             (new Button(new ComponentsAttributes(content: 'Maximizar', class: ['button delete'])))->render(),
-//             (new Button(new ComponentsAttributes(content: 'Editar')))->render()
-//         ]
-//     ],
-//     body: "body Content",
-//     footer: [
-//         (new Button(new ComponentsAttributes(content: 'Salir')))->render(),
-//         (new Button(new ComponentsAttributes(content: 'Gurdar', class: ['button is-danger'])))->render()
-//     ]
-// );
-
-// echo $crd->render();
+$btn1->addChild(new Text("save"));
 
 $crd1 = new Card();
+$crd1->addCardHeader("Mi titulo", true);
+$crd1->addCardFooter($btn1);
+$crd1->addCardContent(new Text("Hola"));
 
-$crd1->addChild($crd1->addCardHeader("Mi titulo", true));
-$content = $crd1->addCardContent();
-
-echo $crd1->render();
-
-$text = new Components(new ComponentsAttributes(content:"texto como objeto"));
-echo $text->render();
+$text = new Components(new ComponentsAttributes(content: "texto como objeto"));
 
 $crdWidget = new CardWidget("Empleados", "1000", "mdi mdi-finance mdi-48px");
-echo $crdWidget->render();
+$div = new Div();
+$div->addChild($btn);
+// $div->addChild($btn1);
+$div->addChild($crd1);
+$div->addChild($text);
+$div->addChild($crdWidget);
+echo $div->render();
 
 ?>
 
