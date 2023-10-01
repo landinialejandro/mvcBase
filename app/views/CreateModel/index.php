@@ -1,6 +1,8 @@
 <?php
+
+require APP_ROOT . "/app/views/inc/header.php";
 // Especifica la ubicación del archivo XML
-$archivoXML = 'model.xml'; // Cambia esto a la ruta de tu archivo XML
+$archivoXML = '/home/alejandro/htdocs/clientes/mios/mvcModelo/app/views/CreateModel/model.xml'; // Cambia esto a la ruta de tu archivo XML
 
 // Verifica si el archivo existe
 if (file_exists($archivoXML)) {
@@ -18,7 +20,7 @@ if (file_exists($archivoXML)) {
         // Acceder a los campos de la tabla
         $fields = $table->field;
 
-        echo "Tabla: $tableName\n";
+        echo "<br>Tabla: $tableName\n";
 
         foreach ($fields as $field) {
             // Obtener información sobre los campos de la tabla
@@ -26,12 +28,12 @@ if (file_exists($archivoXML)) {
             $dataType = (int)$field->dataType;
             $notNull = (bool)$field->notNull;
 
-            echo " - Campo: $fieldName\n";
-            echo "   - Tipo de dato: $dataType\n";
-            echo "   - Requiere valor no nulo: " . ($notNull ? "Sí" : "No") . "\n";
+            echo "<br> - Campo: $fieldName\n";
+            echo "<br>   - Tipo de dato: $dataType\n";
+            echo "<br>   - Requiere valor no nulo: " . ($notNull ? "Sí" : "No") . "\n";
         }
 
-        echo "\n";
+        echo "\n<br>";
     }
 
     // Aquí puedes realizar operaciones adicionales con la información de las tablas según tus necesidades.
@@ -39,3 +41,4 @@ if (file_exists($archivoXML)) {
     echo "El archivo XML no existe.";
 }
 ?>
+<?php require APP_ROOT . "/app/views/inc/footer.php"; ?>

@@ -1,7 +1,5 @@
 <?php
 
-namespace app\components;
-
 require APP_ROOT . "/app/views/inc/header.php";
 ?>
 <h1 class="title">
