@@ -1,4 +1,5 @@
 <?php
+use app\libraries\Database;
 class CreateModel {
 
     private $connection;
