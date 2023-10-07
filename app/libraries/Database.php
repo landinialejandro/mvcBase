@@ -5,8 +5,7 @@ namespace app\libraries;
 
 use PDO, PDOException;
 
-class Database
-{
+class Database {
     private $host = DB_HOST;
     private $user = DB_USER;
     private $pass = DB_PASS;
@@ -16,8 +15,7 @@ class Database
     private $stmt;
     private $error;
 
-    public function __construct()
-    {
+    public function __construct() {
         try {
             // Set DSN
             $dsn = "mysql:host={$this->host}";
@@ -42,14 +40,12 @@ class Database
         }
     }
 
-    private function databaseExists()
-    {
+    private function databaseExists() {
         $stmt = $this->db->query("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '{$this->dbname}'");
         return ($stmt->fetchColumn() !== false);
     }
 
-    private function createDatabase()
-    {
+    private function createDatabase() {
         try {
             $this->db->exec("CREATE DATABASE {$this->dbname}");
         } catch (PDOException $e) {
@@ -59,15 +55,13 @@ class Database
     }
 
     //prepare statment with query
-    public function query($sql)
-    {
+    public function query($sql) {
         $this->stmt = $this->db->prepare($sql);
     }
 
     // Bind values
 
-    public function bind($param, $value, $type = null)
-    {
+    public function bind($param, $value, $type = null) {
 
         if (is_null($type)) {
             switch (true) {
@@ -87,25 +81,21 @@ class Database
         $this->stmt->bindValue($param, $value, $type);
     }
 
-    public function execute()
-    {
+    public function execute() {
         return $this->stmt->execute();
     }
 
-    public function resultSet()
-    {
+    public function resultSet() {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function single()
-    {
+    public function single() {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function rowCount()
-    {
+    public function rowCount() {
         return $this->stmt->rowCount();
     }
 }
