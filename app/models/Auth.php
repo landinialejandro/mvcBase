@@ -1,27 +1,29 @@
 <?php
+use app\libraries\Database;
 
-class ModeloLogin {
+class Auth {
     private $conexion;
 
+
     public function __construct($conexion) {
-        $this->conexion = $conexion;
+        $this->conexion = new Database;
     }
 
-    public function autenticarUsuario($username, $password) {
+    public function autenticarUsuario(string $username, string $password) : bool {
         // Consulta SQL para buscar al usuario por nombre de usuario
         $consulta = "SELECT id, username, password FROM usuarios WHERE username = :username";
-        $stmt = $this->conexion->prepare($consulta);
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
+       $this->conexion->query($consulta);
+       $this->conexion->bind(':username', $username);
+       $this->conexion->execute();
 
         // Obtener el resultado de la consulta
-        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        $usuario =$this->conexion->single(PDO::FETCH_ASSOC);
 
         if ($usuario) {
             // Verificar la contraseña
             if (password_verify($password, $usuario['password'])) {
-                // Autenticación exitosa, devuelve los datos del usuario
-                return $usuario;
+                // Autenticación exitosa
+                return true;
             }
         }
 
@@ -29,18 +31,18 @@ class ModeloLogin {
         return false;
     }
 
-    public function agregarUsuario($username, $password) {
+    public function agregarUsuario(string $username, string $password) {
         // Hash de la contraseña
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         // Consulta SQL para insertar un nuevo usuario
         $consulta = "INSERT INTO usuarios (username, password) VALUES (:username, :password)";
-        $stmt = $this->conexion->prepare($consulta);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $hashedPassword);
+       $this->conexion->query($consulta);
+       $this->conexion->bind(':username', $username);
+       $this->conexion->bind(':password', $hashedPassword);
 
         // Ejecutar la consulta
-        return $stmt->execute();
+        return$this->conexion->execute();
     }
 
     public function modificarContraseña($id, $newPassword) {
@@ -49,12 +51,12 @@ class ModeloLogin {
 
         // Consulta SQL para actualizar la contraseña del usuario
         $consulta = "UPDATE usuarios SET password = :password WHERE id = :id";
-        $stmt = $this->conexion->prepare($consulta);
-        $stmt->bindParam(':password', $hashedPassword);
-        $stmt->bindParam(':id', $id);
+       $this->conexion->query($consulta);
+       $this->conexion->bind(':password', $hashedPassword);
+       $this->conexion->bind(':id', $id);
 
         // Ejecutar la consulta
-        return $stmt->execute();
+        return$this->conexion->execute();
     }
     
     public function crearTablaUsuarios() {
@@ -66,7 +68,7 @@ class ModeloLogin {
         )";
 
         // Ejecutar la consulta
-        return $this->conexion->exec($consulta);
+        return $this->conexion->execute($consulta);
     }
 }
 ?>
