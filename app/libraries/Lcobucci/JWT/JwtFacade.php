@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT;
+namespace app\libraries\Lcobucci\JWT;
 
 use Closure;
 use DateTimeImmutable;
-use Lcobucci\JWT\Encoding\ChainedFormatter;
-use Lcobucci\JWT\Encoding\JoseEncoder;
-use Lcobucci\JWT\Signer\Key;
-use Lcobucci\JWT\Validation\Constraint;
-use Lcobucci\JWT\Validation\SignedWith;
-use Lcobucci\JWT\Validation\ValidAt;
-use Lcobucci\JWT\Validation\Validator;
+use app\libraries\Lcobucci\JWT\Encoding\ChainedFormatter;
+use app\libraries\Lcobucci\JWT\Encoding\JoseEncoder;
+use app\libraries\Lcobucci\JWT\Signer\Key;
+use app\libraries\Lcobucci\JWT\Validation\Constraint;
+use app\libraries\Lcobucci\JWT\Validation\SignedWith;
+use app\libraries\Lcobucci\JWT\Validation\ValidAt;
+use app\libraries\Lcobucci\JWT\Validation\Validator;
 use Psr\Clock\ClockInterface as Clock;
 
 use function assert;

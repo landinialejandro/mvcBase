@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT;
+namespace app\libraries\Lcobucci\JWT;
 
-use Lcobucci\JWT\Token\DataSet;
-use Lcobucci\JWT\Token\Signature;
+use app\libraries\Lcobucci\JWT\Token\DataSet;
+use app\libraries\Lcobucci\JWT\Token\Signature;
 
 interface UnencryptedToken extends Token
 {

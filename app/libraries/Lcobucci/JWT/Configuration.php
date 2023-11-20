@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT;
+namespace app\libraries\Lcobucci\JWT;
 
 use Closure;
-use Lcobucci\JWT\Encoding\ChainedFormatter;
-use Lcobucci\JWT\Encoding\JoseEncoder;
-use Lcobucci\JWT\Signer\Key;
-use Lcobucci\JWT\Validation\Constraint;
+use app\libraries\Lcobucci\JWT\Encoding\ChainedFormatter;
+use app\libraries\Lcobucci\JWT\Encoding\JoseEncoder;
+use app\libraries\Lcobucci\JWT\Signer\Key;
+use app\libraries\Lcobucci\JWT\Validation\Constraint;
 
 /**
  * Configuration container for the JWT Builder and Parser

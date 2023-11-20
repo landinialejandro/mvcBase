@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT\Token;
+namespace app\libraries\Lcobucci\JWT\Token;
 
 use DateTimeImmutable;
-use Lcobucci\JWT\Builder as BuilderInterface;
-use Lcobucci\JWT\ClaimsFormatter;
-use Lcobucci\JWT\Encoder;
-use Lcobucci\JWT\Encoding\CannotEncodeContent;
-use Lcobucci\JWT\Signer;
-use Lcobucci\JWT\Signer\Key;
-use Lcobucci\JWT\UnencryptedToken;
+use app\libraries\Lcobucci\JWT\Builder as BuilderInterface;
+use app\libraries\Lcobucci\JWT\ClaimsFormatter;
+use app\libraries\Lcobucci\JWT\Encoder;
+use app\libraries\Lcobucci\JWT\Encoding\CannotEncodeContent;
+use app\libraries\Lcobucci\JWT\Signer;
+use app\libraries\Lcobucci\JWT\Signer\Key;
+use app\libraries\Lcobucci\JWT\UnencryptedToken;
 
 use function array_diff;
 use function array_merge;

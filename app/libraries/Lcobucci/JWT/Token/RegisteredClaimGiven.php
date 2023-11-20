@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT\Token;
+namespace app\libraries\Lcobucci\JWT\Token;
 
 use InvalidArgumentException;
-use Lcobucci\JWT\Exception;
+use app\libraries\Lcobucci\JWT\Exception;
 
 use function sprintf;
 

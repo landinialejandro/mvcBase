@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT;
+namespace app\libraries\Lcobucci\JWT;
 
-use Lcobucci\JWT\Signer\CannotSignPayload;
-use Lcobucci\JWT\Signer\Ecdsa\ConversionFailed;
-use Lcobucci\JWT\Signer\InvalidKeyProvided;
-use Lcobucci\JWT\Signer\Key;
+use app\libraries\Lcobucci\JWT\Signer\CannotSignPayload;
+use app\libraries\Lcobucci\JWT\Signer\Ecdsa\ConversionFailed;
+use app\libraries\Lcobucci\JWT\Signer\InvalidKeyProvided;
+use app\libraries\Lcobucci\JWT\Signer\Key;
 
 interface Signer
 {

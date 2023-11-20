@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT\Signer;
+namespace app\libraries\Lcobucci\JWT\Signer;
 
 use InvalidArgumentException;
-use Lcobucci\JWT\Exception;
+use app\libraries\Lcobucci\JWT\Exception;
 
 final class InvalidKeyProvided extends InvalidArgumentException implements Exception
 {

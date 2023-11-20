@@ -2,8 +2,6 @@
 //App root
 define('APP_ROOT', dirname(dirname(dirname(__FILE__))));
 
-load_files(dirname(__FILE__));
-
 if (defined('DEV_MODE') && DEV_MODE) return;
 
 //production configs

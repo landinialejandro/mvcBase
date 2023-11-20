@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT;
+namespace app\libraries\Lcobucci\JWT;
 
 use DateTimeImmutable;
-use Lcobucci\JWT\Encoding\CannotEncodeContent;
-use Lcobucci\JWT\Signer\CannotSignPayload;
-use Lcobucci\JWT\Signer\Ecdsa\ConversionFailed;
-use Lcobucci\JWT\Signer\InvalidKeyProvided;
-use Lcobucci\JWT\Signer\Key;
-use Lcobucci\JWT\Token\RegisteredClaimGiven;
+use app\libraries\Lcobucci\JWT\Encoding\CannotEncodeContent;
+use app\libraries\Lcobucci\JWT\Signer\CannotSignPayload;
+use app\libraries\Lcobucci\JWT\Signer\Ecdsa\ConversionFailed;
+use app\libraries\Lcobucci\JWT\Signer\InvalidKeyProvided;
+use app\libraries\Lcobucci\JWT\Signer\Key;
+use app\libraries\Lcobucci\JWT\Token\RegisteredClaimGiven;
 
 /** @immutable */
 interface Builder

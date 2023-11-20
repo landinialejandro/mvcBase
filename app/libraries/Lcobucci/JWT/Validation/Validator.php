@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT\Validation;
+namespace app\libraries\Lcobucci\JWT\Validation;
 
-use Lcobucci\JWT\Token;
+use app\libraries\Lcobucci\JWT\Token;
 
 final class Validator implements \Lcobucci\JWT\Validator
 {

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT\Signer\Key;
+namespace app\libraries\Lcobucci\JWT\Signer\Key;
 
-use Lcobucci\JWT\Signer\InvalidKeyProvided;
-use Lcobucci\JWT\Signer\Key;
-use Lcobucci\JWT\SodiumBase64Polyfill;
+use app\libraries\Lcobucci\JWT\Signer\InvalidKeyProvided;
+use app\libraries\Lcobucci\JWT\Signer\Key;
+use app\libraries\Lcobucci\JWT\SodiumBase64Polyfill;
 use SplFileObject;
 use Throwable;
 

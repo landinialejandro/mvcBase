@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT\Encoding;
+namespace app\libraries\Lcobucci\JWT\Encoding;
 
-use Lcobucci\JWT\ClaimsFormatter;
+use app\libraries\Lcobucci\JWT\ClaimsFormatter;
 
 final class ChainedFormatter implements ClaimsFormatter
 {

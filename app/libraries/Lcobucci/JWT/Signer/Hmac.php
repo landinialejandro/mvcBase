@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT\Signer;
+namespace app\libraries\Lcobucci\JWT\Signer;
 
-use Lcobucci\JWT\Signer;
+use app\libraries\Lcobucci\JWT\Signer;
 
 use function hash_equals;
 use function hash_hmac;

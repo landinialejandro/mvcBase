@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT\Validation\Constraint;
+namespace app\libraries\Lcobucci\JWT\Validation\Constraint;
 
 use InvalidArgumentException;
-use Lcobucci\JWT\Exception;
+use app\libraries\Lcobucci\JWT\Exception;
 
 final class LeewayCannotBeNegative extends InvalidArgumentException implements Exception
 {

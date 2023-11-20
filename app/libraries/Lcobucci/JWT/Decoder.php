@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT;
+namespace app\libraries\Lcobucci\JWT;
 
-use Lcobucci\JWT\Encoding\CannotDecodeContent;
+use app\libraries\Lcobucci\JWT\Encoding\CannotDecodeContent;
 
 interface Decoder
 {

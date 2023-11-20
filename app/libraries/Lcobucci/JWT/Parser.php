@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT;
+namespace app\libraries\Lcobucci\JWT;
 
-use Lcobucci\JWT\Encoding\CannotDecodeContent;
-use Lcobucci\JWT\Token\InvalidTokenStructure;
-use Lcobucci\JWT\Token\UnsupportedHeaderFound;
+use app\libraries\Lcobucci\JWT\Encoding\CannotDecodeContent;
+use app\libraries\Lcobucci\JWT\Token\InvalidTokenStructure;
+use app\libraries\Lcobucci\JWT\Token\UnsupportedHeaderFound;
 
 interface Parser
 {

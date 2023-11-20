@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT\Signer\Key;
+namespace app\libraries\Lcobucci\JWT\Signer\Key;
 
 use InvalidArgumentException;
-use Lcobucci\JWT\Exception;
+use app\libraries\Lcobucci\JWT\Exception;
 use Throwable;
 
 final class FileCouldNotBeRead extends InvalidArgumentException implements Exception

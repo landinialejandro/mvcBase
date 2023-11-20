@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT\Signer;
+namespace app\libraries\Lcobucci\JWT\Signer;
 
-use Lcobucci\JWT\Signer\Ecdsa\MultibyteStringConverter;
-use Lcobucci\JWT\Signer\Ecdsa\SignatureConverter;
+use app\libraries\Lcobucci\JWT\Signer\Ecdsa\MultibyteStringConverter;
+use app\libraries\Lcobucci\JWT\Signer\Ecdsa\SignatureConverter;
 
 use const OPENSSL_KEYTYPE_EC;
 

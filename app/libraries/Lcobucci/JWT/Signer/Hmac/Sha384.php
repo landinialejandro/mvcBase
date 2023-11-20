@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT\Signer\Hmac;
+namespace app\libraries\Lcobucci\JWT\Signer\Hmac;
 
-use Lcobucci\JWT\Signer\Hmac;
+use app\libraries\Lcobucci\JWT\Signer\Hmac;
 
 final class Sha384 extends Hmac
 {

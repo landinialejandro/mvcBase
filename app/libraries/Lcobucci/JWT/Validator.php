@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT;
+namespace app\libraries\Lcobucci\JWT;
 
-use Lcobucci\JWT\Validation\Constraint;
-use Lcobucci\JWT\Validation\NoConstraintsGiven;
-use Lcobucci\JWT\Validation\RequiredConstraintsViolated;
+use app\libraries\Lcobucci\JWT\Validation\Constraint;
+use app\libraries\Lcobucci\JWT\Validation\NoConstraintsGiven;
+use app\libraries\Lcobucci\JWT\Validation\RequiredConstraintsViolated;
 
 interface Validator
 {

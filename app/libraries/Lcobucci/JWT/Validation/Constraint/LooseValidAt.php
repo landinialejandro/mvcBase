@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Lcobucci\JWT\Validation\Constraint;
+namespace app\libraries\Lcobucci\JWT\Validation\Constraint;
 
 use DateInterval;
 use DateTimeInterface;
-use Lcobucci\JWT\Token;
-use Lcobucci\JWT\Validation\ConstraintViolation;
-use Lcobucci\JWT\Validation\ValidAt as ValidAtInterface;
+use app\libraries\Lcobucci\JWT\Token;
+use app\libraries\Lcobucci\JWT\Validation\ConstraintViolation;
+use app\libraries\Lcobucci\JWT\Validation\ValidAt as ValidAtInterface;
 use Psr\Clock\ClockInterface as Clock;
 
 final class LooseValidAt implements ValidAtInterface
