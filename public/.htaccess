@@ -1,9 +1,28 @@
 <IfModule mod_rewrite.c>
   Options -Multiviews
   RewriteEngine On
-  # change RewriteBase for other project
+  
+  # Base URL del proyecto (ajustar si no está en el root)
   RewriteBase /clientes/mios/mvcModelo/public
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule  ^(.+)$ index.php?url=$1 [QSA,L]
+
+# No redirigir si es un archivo o directorio existente
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Redirigir todo a index.php
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 </IfModule>
+
+# Manejo de errores personalizados
+
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php
+
+# Proteger archivos sensibles
+
+<FilesMatch "\.(env|ini|log|json|php|config)$">
+Order Deny,Allow
+Deny from all
+</FilesMatch>
