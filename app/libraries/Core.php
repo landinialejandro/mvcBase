@@ -1,11 +1,7 @@
 <?php
 
-/**
- * App Core Class
- * 
- */
-
 namespace app\libraries;
+namespace app\controllers;
 
 class Core {
     protected $currentController = 'Pages';
@@ -13,41 +9,73 @@ class Core {
     protected $parameters = [];
 
     public function __construct() {
-        // print_r($this->getUrl());
         $url = $this->getUrl();
-        if (!is_null($url) && file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
-            // If exists, set as controller in current controller
+
+        // Procesar el controlador
+        if (!is_null($url) && $this->controllerExists($url[0])) {
             $this->currentController = ucwords($url[0]);
             unset($url[0]);
         }
-        //requiere controller
-        require_once '../app/controllers/' . $this->currentController . '.php';
 
-        //instance controller class
+        // Incluir y crear la instancia del controlador
+        require_once "../app/controllers/{$this->currentController}.php";
         $this->currentController = new $this->currentController;
 
-        //check second part of url
-        if (isset($url[1])) {
-            //check if method exists
-            if (method_exists($this->currentController, $url[1])) {
-                $this->currentMethod = $url[1];
-                unset($url[1]);
-            }
+        // Procesar el método
+        if (isset($url[1]) && $this->methodExists($this->currentController, $url[1])) {
+            $this->currentMethod = $url[1];
+            unset($url[1]);
         }
 
-        //get params
+        // Obtener parámetros restantes
         $this->parameters = $url ? array_values($url) : [];
 
-        //call a callback with array of parameters
+        // Llamar al método del controlador con los parámetros
         call_user_func_array([$this->currentController, $this->currentMethod], $this->parameters);
     }
 
+    /**
+     * Obtener y procesar la URL.
+     */
     private function getUrl() {
         if (isset($_GET['url'])) {
             $url = rtrim($_GET['url'], '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);
-            $url = explode('/', $url);
-            return $url;
+            return explode('/', $url);
         }
+        return null;
+    }
+
+    /**
+     * Verificar si un controlador existe.
+     */
+    private function controllerExists($controller): bool {
+        $controllerFile = "../app/controllers/" . ucwords($controller) . ".php";
+        if (file_exists($controllerFile)) {
+            return true;
+        }
+        error_log("[Core Error] El controlador '{$controller}' no existe.");
+        return false;
+    }
+
+    /**
+     * Verificar si un método existe en el controlador.
+     */
+    private function methodExists($controller, $method): bool {
+        if (method_exists($controller, $method)) {
+            return true;
+        }
+        error_log("[Core Error] El método '{$method}' no existe en el controlador '{$controller}'.");
+        return false;
+    }
+
+    /**
+     * Redirigir a una página de error.
+     */
+    private function redirectToErrorPage() {
+        require_once '../app/controllers/Errors.php';
+        $errorController = new Errors();
+        $errorController->index();
+        exit;
     }
 }

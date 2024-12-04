@@ -1,26 +1,64 @@
 <?php
-//* base controller
-//* load models and views
+
 namespace app\libraries;
 
-class Controller {
-    //load model
-    public function model($model){
-        // requiere file model
-        require_once "../app/models/{$model}.php";
+use Exception;
 
-        // instance model
+class Controller {
+    /**
+     * Cargar un modelo
+     */
+    public function model(string $model) {
+        $modelFile = "../app/models/{$model}.php";
+
+        if (!file_exists($modelFile)) {
+            throw new Exception("El modelo '{$model}' no existe.");
+        }
+
+        require_once $modelFile;
+
+        if (!class_exists($model)) {
+            throw new Exception("La clase '{$model}' no está definida en el modelo.");
+        }
+
         return new $model();
     }
 
-    //load view
-    public function view ($view, $data = []){
+    /**
+     * Cargar una vista
+     */
+    public function view(string $view, array $data = []) {
+        $viewFile = "../app/views/{$view}.php";
 
-        if (file_exists( "../app/views/{$view}.php")){
-            require_once "../app/views/{$view}.php";
-        }else{
-            die("* {$view} view does not exist");
+        if (!file_exists($viewFile)) {
+            throw new Exception("La vista '{$view}' no existe.");
         }
 
+        // Convertir los datos a variables individuales
+        extract($data);
+
+        require_once $viewFile;
+    }
+
+    /**
+     * Renderizar una vista con un layout (opcional)
+     */
+    public function render(string $layout, string $view, array $data = []) {
+        $layoutFile = "../app/views/layouts/{$layout}.php";
+        $viewFile = "../app/views/{$view}.php";
+
+        if (!file_exists($layoutFile)) {
+            throw new Exception("El layout '{$layout}' no existe.");
+        }
+
+        if (!file_exists($viewFile)) {
+            throw new Exception("La vista '{$view}' no existe.");
+        }
+
+        // Convertir los datos a variables individuales
+        extract($data);
+
+        // Cargar el layout, que incluirá la vista
+        include $layoutFile;
     }
 }

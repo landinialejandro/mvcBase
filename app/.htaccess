@@ -1,1 +1,11 @@
-Options -Indexes
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Bloquear acceso a todo el directorio
+  RewriteRule ^ - [F,L]
+</IfModule>
+
+# Proteger archivos sensibles
+<FilesMatch "\.(php|ini|log|json|config|env)$">
+  Order Deny,Allow
+  Deny from all
+</FilesMatch>
