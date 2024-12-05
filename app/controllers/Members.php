@@ -1,4 +1,6 @@
 <?php
+
+namespace app\controllers;
 use app\libraries\Controller;
 class Members extends Controller {
     protected $Model;

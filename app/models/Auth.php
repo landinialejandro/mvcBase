@@ -1,5 +1,7 @@
 <?php
+namespace app\models;
 use app\libraries\Database;
+use PDO;
 
 class Auth {
     private $conexion;

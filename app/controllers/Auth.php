@@ -1,5 +1,6 @@
 <?php
 
+namespace app\controllers;
 use app\libraries\Controller;
 
 
@@ -9,7 +10,6 @@ class Auth extends Controller {
     }
 
     public function index() {
-        $now   = new DateTimeImmutable();
 
         $data = [
             'title' => 'MVC Auth page',

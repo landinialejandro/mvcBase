@@ -1,4 +1,6 @@
-<?php
+<?php  
+
+namespace app\helpers;
 sec_session_start();
 
 // Flash message helper

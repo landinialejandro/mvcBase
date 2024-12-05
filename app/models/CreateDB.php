@@ -1,4 +1,7 @@
 <?php
+namespace app\models;
+use PDO;
+use PDOException;
 
 try {
     // Conexión a la base de datos
