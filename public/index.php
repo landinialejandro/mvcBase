@@ -22,7 +22,7 @@ try {
         die("Error: " . $e->getMessage());
     } else {
         // Redirigir a una página de error en producción
-        // header('Location: /error');
+        header('Location: /mvcBase/error.php');
         exit;
     }
 }

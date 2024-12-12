@@ -30,7 +30,7 @@ if (APP_ENV === 'development') {
 
 // Nombre del sitio
 if (!defined('SITE_NAME')) {
-    define('SITE_NAME', 'Modelo MVC');
+    define('SITE_NAME', 'MVC_BASE');
 }
 
 // Versión de la aplicación

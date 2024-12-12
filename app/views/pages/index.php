@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -8,7 +9,7 @@
     <title><?php echo SITE_NAME ?></title> <!-- Título de la página -->
 
     <!-- Favicon para navegadores estándar -->
-    <link rel="icon" type="image/x-icon" href="dist/logo/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="<?php echo URL_ROOT; ?>/dist/logo/favicon.ico">
 
     <!-- Metadatos adicionales para SEO y descripción -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,7 +112,7 @@
                         <?php echo $data['title']; ?>
                     </h1>
                     <p class="subtitle">MVC Model test</p>
-                    
+
                 </article>
 
             </section>
