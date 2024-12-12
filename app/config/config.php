@@ -4,7 +4,7 @@ define('APP_ROOT', dirname(dirname(dirname(__FILE__))));
 
 // Verificar si la constante APP_ENV está definida
 if (!defined('APP_ENV')) {
-    define('APP_ENV', 'production'); // Valor predeterminado si no está definido
+    define('APP_ENV', 'development'); // Valor predeterminado si no está definido
 }
 
 // Configuraciones por entorno
