@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/config/config.php';
 function auto($class_name) {
     try {
         if (!class_exists($class_name)) {
-            $file_path = APP_ROOT . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $class_name) . '.php';
+            $file_path = APP_ROOT . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class_name) . '.php';
             require_file($file_path);
         }
     } catch (Exception $e) {

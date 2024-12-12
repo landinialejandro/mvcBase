@@ -3,7 +3,7 @@
   RewriteEngine On
   
   # Base URL del proyecto (ajustar si no está en el root)
-  RewriteBase /clientes/mios/mvcModelo/public
+  RewriteBase /mvcBase/public/
 
 # No redirigir si es un archivo o directorio existente
 
@@ -22,7 +22,7 @@ ErrorDocument 500 /500.php
 
 # Proteger archivos sensibles
 
-<FilesMatch "\.(env|ini|log|json|php|config)$">
+<FilesMatch "\.(env|ini|log|json|config)$">
 Order Deny,Allow
 Deny from all
 </FilesMatch>

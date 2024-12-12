@@ -16,7 +16,7 @@ if (APP_ENV === 'development') {
     define('DB_NAME', 'employees');
 
     // URL base para desarrollo
-    define('URL_ROOT', 'http://localhost/clientes/mios/mvcModelo');
+    define('URL_ROOT', 'http://localhost/mvcBase');
 } else {
     // Configuración de producción
     define('DB_HOST', 'prod-db-server');

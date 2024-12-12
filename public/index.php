@@ -2,10 +2,8 @@
 // Cargar el archivo bootstrap
 include_once '../app/bootstrap.php';
 
-use app\libraries\Core;
-
-// Configuración de entornos
-define('APP_ENV', 'development'); // Cambiar a 'production' en producción
+use \app\libraries\Core;
+use Exception;
 
 if (APP_ENV === 'development') {
     error_reporting(E_ALL);
@@ -24,7 +22,7 @@ try {
         die("Error: " . $e->getMessage());
     } else {
         // Redirigir a una página de error en producción
-        header('Location: /error');
+        // header('Location: /error');
         exit;
     }
 }

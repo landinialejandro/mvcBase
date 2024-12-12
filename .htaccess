@@ -17,15 +17,15 @@ ErrorDocument 404 /public/404.php
 ErrorDocument 500 /public/500.php
 
 # Proteger archivos sensibles
-<FilesMatch "\.(env|config|json|log|ini|php)$">
+<FilesMatch "\.(env|config|json|log|ini)$">
   Order Deny,Allow
   Deny from all
 </FilesMatch>
 
-# Proteger el acceso a carpetas específicas (si es necesario)
-<Directory /app>
-  Deny from all
-</Directory>
+# # Proteger el acceso a carpetas específicas (si es necesario)
+# <Directory /app>
+#   Deny from all
+# </Directory>
 
 # Caching para mejorar el rendimiento (opcional)
 <IfModule mod_expires.c>

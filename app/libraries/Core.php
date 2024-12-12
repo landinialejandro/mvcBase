@@ -1,7 +1,7 @@
 <?php
 
 namespace app\libraries;
-namespace app\controllers;
+use app\controllers\Errors;
 
 class Core {
     protected $currentController = 'Pages';
