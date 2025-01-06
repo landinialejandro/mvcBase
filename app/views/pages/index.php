@@ -1,3 +1,6 @@
+<?php
+// * file: app/views/pages/index.php
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -111,7 +114,7 @@
                     <h1 class="title">
                         <?php echo $data['title']; ?>
                     </h1>
-                    <p class="subtitle">MVC Model test</p>
+                    <p class="subtitle">MVC Model test!!</p>
 
                 </article>
 

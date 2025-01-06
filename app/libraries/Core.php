@@ -1,5 +1,5 @@
 <?php
-
+// * file: app/libraries/Core.php
 namespace app\libraries;
 use app\controllers\Errors;
 

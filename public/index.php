@@ -1,4 +1,5 @@
 <?php
+// * file: public/index.php
 // Cargar el archivo bootstrap
 include_once '../app/bootstrap.php';
 

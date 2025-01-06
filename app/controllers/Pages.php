@@ -11,7 +11,7 @@ class Pages extends Controller {
     public function index() {
 
         $data = [
-            'title' => 'MVC Landini',
+            'title' => 'MVC BASE Landini',
         ];
         $this->view('pages/index', $data);
     }
